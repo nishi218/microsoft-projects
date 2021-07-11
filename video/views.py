@@ -1,6 +1,60 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import auth, User, Group
+
 
 # Create your views here.
+
+
+def login(request):
+    if request.method == "GET":
+        return render(request, "login.html")
+    else:
+        email = request.POST["email"]
+        password = request.POST["psw"]
+        username = request.POST["username"]
+
+        user = auth.authenticate(
+            email=email, password=password, username=username)
+        if user is not None:
+            auth.login(request, user)
+            return redirect("/profile/username="+user.username)
+        else:
+            return redirect('/signup.html/')
+
+
+def signup(request):
+    if request.method == "POST":
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
+        email = request.POST["email"]
+        username = request.POST["username"]
+        password1 = request.POST["psw"]
+        password2 = request.POST["psw-repeat"]
+        if password1 == password2:
+            user = User.objects.create_user(
+                email=email, password=password1, first_name=first_name, last_name=last_name, username=username)
+            user.save()
+            return render(request, "login.html")
+        else:
+            return render(request, "signup.html")
+    else:
+        return render(request, "signup.html")
+
+
+def profile(request, username):
+    return render(request, "profile.html")
+
+
+def call(request):
+    if request.method == "GET":
+        return render(request, "call.html")
+    else:
+        q = request.POST['search']
+        if q == "":
+            return render(request, "call.html")
+        else:
+            posts = User.objects.filter(username__contains=q)
+            return render(request, 'call.html', {'peer': posts})
 
 
 def index(request):
@@ -9,14 +63,14 @@ def index(request):
     else:
         room = request.POST['room_name']
         username = request.POST["username"]
-        # print(username)
-
         return redirect('/'+room+'/'+username+'/')
 
 
 def room(request, room_name, username):
-    # room_name = request.GET.get('room_name')
-    # username = request.GET.get('username')
-    context = {'room_name': room_name,
-               'username': username}
+    context = {'room_name': room_name, 'username': username}
     return render(request, 'room.html', context=context)
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("/login/")
