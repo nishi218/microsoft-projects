@@ -90,13 +90,16 @@
 
         // to get local video stream and managing audio and video mute-unmute function
         function gotLocalMediaStream(mediaStream) {
+            
             localVideo.srcObject = mediaStream;
             localStream = mediaStream;
             trace('Received local stream.');
+            
             const videoTracks = localStream.getVideoTracks();
             const audioTracks = localStream.getAudioTracks();
             audioTracks[0].enabled=true;
             videoTracks[0].enabled=true;
+            
             btnaudio.addEventListener('click',()=>{
                 audioTracks[0].enabled=!audioTracks[0].enabled;
                 if(audioTracks[0].enabled)
@@ -105,6 +108,7 @@
                     btnaudio.innerHTML='Audio UnMute';
 
             });
+
             btnvideo.addEventListener('click',()=>{
                 videoTracks[0].enabled=!videoTracks[0].enabled;
                 if(videoTracks[0].enabled)
@@ -293,6 +297,7 @@
 
         // to create new remote video and add it to the video grid
         function createVideo(user){
+            
             var videoe=document.querySelector("#video-container");
             var videoappend=document.createElement('div');
             var remotevideo = document.createElement("video");
@@ -307,6 +312,7 @@
 
         // function for sharing the screen
         function shareAction(){
+            
             navigator.mediaDevices.getDisplayMedia({cursor:true})
             .then(stream=>{
                 const streamtrack =stream.getTracks()[0];
@@ -340,6 +346,7 @@
         }
         // triggers whenever websockets receives a message
         function websocketrecievemessage(event){
+            
             let data=JSON.parse(event.data);
             var user=data['user'];
             var action=data['action'];
