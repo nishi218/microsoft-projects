@@ -25,13 +25,20 @@ Group video chat room
 WALKTHROUGH MY APP
 
 User logins in his account or signup for a new account
+
 Lands on landing page and clicks on calls button
+
 Search for a username to call
+
 Enter a room name to join in
+
 He can talk to other peers in the same room before the meeting through chat button
+
 He clicks on call button to join the video conferencing in that room
 If he wants to end his video call  , he clicks on the hang up button and will be disconnected from the call .But he will stay in the same room .He can message to all the group members in the same room.
+
 If a user wants to leave a room he just clicks leave room button and he will be redirected to the call room again.
+
 CHANNELS WHICH I TOOK HELP FROM IN MAKING THIS APP
 https://channels.readthedocs.io/en/stable/
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction
