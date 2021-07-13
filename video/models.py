@@ -1,24 +1,24 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
+# from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 # Create your models here.
+User = get_user_model()
 
 
-class User(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=254)
-    password = models.CharField(max_length=10)
-    username = models.CharField(max_length=100)
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
-
-    class Meta:
-        ordering = ['first_name', 'last_name']
-
-    def get_absolute_url(self):
-        """Returns the url to access a particular author instance."""
-        return reverse('user-detail', args=[str(self.id)])
+class Room(models.Model):
+    author = models.ForeignKey(User, on_delete=CASCADE)
+    content = models.ForeignKey('Message', on_delete=CASCADE)
+    name = models.CharField(max_length=200)
 
     def __str__(self):
-        """String for representing the Model object."""
-        return f'{self.first_name}, {self.last_name}'
+        return self.name
+
+
+class Message(models.Model):
+    message = models.TextField(max_length=10000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.first_name

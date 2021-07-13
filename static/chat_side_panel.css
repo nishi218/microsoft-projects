@@ -12,11 +12,9 @@ body {
   background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
-  /* padding-top: 60px; */
 }
 
 .sidepanel a {
-  /* padding: 8px 8px 8px 32px; */
   text-decoration: none;
   font-size: 25px;
   color: #818181;
@@ -24,10 +22,12 @@ body {
   transition: 0.3s;
 }
 
+/* when hovering over sidepanel */
 .sidepanel a:hover {
   color: #f1f1f1;
 }
 
+/* closebutton on side panel */
 .sidepanel .closebtn {
   position: absolute;
   top: 0;
@@ -35,6 +35,7 @@ body {
   font-size: 36px;
 }
 
+/* button to open side panel */
 .openbtn {
   /* font-size: 36px; */
   cursor: pointer;
@@ -45,14 +46,12 @@ body {
   border: none;
 }
 
-/* .openbtn:hover {
-  background-color: rgb(0, 174, 255);
-  /* opacity: 0.5; */
-/* }  */
-
+/* text area to show the messages */
 #chat-log {
   background-color: rgb(80, 255, 168);
 }
+
+/* send button to send messages */
 #chat-message-submit {
   background-color: cyan;
   font-size: 15px;

@@ -1,8 +1,6 @@
 .custom-select {
   position: relative;
   font-family: Arial;
-  /* right: 50%; */
-  /* left: 50%; */
 }
 
 .custom-select select {

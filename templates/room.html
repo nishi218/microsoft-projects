@@ -6,74 +6,59 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{%static 'emojionearea.min.css' %}">
-    <title>Chat Room</title>
+    <link rel="stylesheet" href="{%static 'buttons_styling.css' %}">
+    <link rel="stylesheet" href="{%static 'chat_side_panel.css' %}" type="text/css">
+    <link rel="stylesheet" href="{%static 'select_filter.css' %}" type="text/css">
+    
+    <title>Video Call Room</title>
     <style>
         html{
             background-color: black;
             box-sizing:border-box;
-
         }
         body{
             height: 100%;
             margin: 0;
             padding: 10px;
         }
+        /* styling for all the videos in the grid */
         #video-container {
-            /* height: 100%; */
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(3, 1fr);
             display: flex;
             align-items: center;
             justify-content: center;
-            /* width: 100%; */
             text-align: center;
             padding: 10px;
             background-color: black;
-            
         }
-        #container{
+        /* styling for grids containg videos */
+        #video-grid{
             display: grid;
         }
+        /* styling for space containing chat,buttons and video */
         #main-container {
-            
-            /* height: 100%; */
-            
-            background-color: black;
-            
+            background-color: black;   
         }
+        /* styling for each video  */
         video {
             border-radius: 30px;
             height: 300px;
             width: 300px;
             background-color: black;
         }
-        
-        .buttons{
+        /* positioning of buttons */
+        .buttons_positioning{
             width: 50%;
             margin: 0;
             align-items: center;
             position: absolute;
             bottom: 10px;
             left: 30%;
-            
-        }
-        button{
-            background-color: #04AA6D;
-            color: white;
-            padding: 14px 20px;
-            cursor: pointer;
-            font-size: 15px;
-        }
-        button:hover {
-            opacity: 0.8;
-        }
-        button:disabled{
-            background-color: rgb(255, 38, 0);
         }
         
+        
     </style>
-    <link rel="stylesheet" href="{%static 'pop.css' %}" type="text/css">
-    <link rel="stylesheet" href="{%static 'dropdown.css' %}" type="text/css">
     
 </head>
 <body>
@@ -86,36 +71,34 @@
         <div id="mySidepanel" class="sidepanel">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <textarea id="chat-log" cols="100" rows="40"></textarea><br>
-             <input id="chat-message-input" type="text" size="100"><br>
-             <input id="chat-message-submit" type="button" value="Send">             
-          </div>
-          
-          <button  class="openbtn" onclick="openNav()"  ><i class="material-icons" style='font-size:36px;padding: 5px;'>chat</i></button>
-                      
-          <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            <script src="{%static 'emojionearea.min.js' %}"> </script>
+            <input id="chat-message-input" type="text" size="100"><br>
+            <input id="chat-message-submit" type="button" value="Send">             
+        </div>
+        <button  class="openbtn" onclick="openNav()"  ><i class="material-icons" style='font-size:36px;padding: 5px;'>chat</i></button>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="{%static 'emojionearea.min.js' %}"> </script>
         
-          <script>
+        <script>
             function openNav() {
                 document.getElementById("mySidepanel").style.width = "330px";
             }
             function closeNav() {
                 document.getElementById("mySidepanel").style.width = "0";
             }
-          $(document).ready(function(){
+            $(document).ready(function(){
                 $("#chat-message-input").emojioneArea({
                     pickerPosition:"bottom-right"
                 });
             });
-          </script>
-        <div id="container">
+        </script>
+        <div id="video-grid">
             <div id="video-container">
                 <div ><video id="localVideo"  autoplay playsinline></video></div>
             </div>
         </div>
         
         
-        <div class="buttons">
+        <div class="buttons_positioning">
             
             <button id="callButton">Call</button>
             <button id="audio">Audio Mute</button>
@@ -132,16 +115,18 @@
                         <option value="invert(100%)">invert</option>
                         <option value="sepia(100%)">sepia</option>
                 </select>
-              </div>
+            </div>
             <button id="clear">Clear Filter</button>
-            <button id="hangupButton">Hang Up</button>
+            <a href="{%url 'room'  room_name username %}">
+                <button id="hangupButton" disabled>Hang Up</button>
+            </a>
             <a href="{%url 'call' %}">
                 <button type="button" >Leave Room</button>
-              </a>
+            </a>
         </div> 
         <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-        <script src="{%static 'main1.js' %}"> </script>
-        <script src="{%static 'dropdown.js' %}"></script>
+        <script src="{%static 'video.js' %}"> </script>
+        <script src="{%static 'select_filter.js' %}"></script>
     </div>
     
 </body>
