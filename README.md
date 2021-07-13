@@ -39,10 +39,17 @@ If he wants to end his video call  , he clicks on the hang up button and will be
 
 If a user wants to leave a room he just clicks leave room button and he will be redirected to the call room again.
 
-CHANNELS WHICH I TOOK HELP FROM IN MAKING THIS APP
+LINKS WHICH I TOOK HELP FROM IN MAKING THIS APP
 https://channels.readthedocs.io/en/stable/
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction
 https://webrtc.github.io/samples/
 https://codelabs.developers.google.com/codelabs/webrtc-web#0
 https://www.w3schools.com/
 
+AGILE METHODOLOGY USED IN THIS PROJECT
+I always created small modules for every certain things which I wanted to add.
+I was simultaneously working on testing my webpages eficacy,as soon as I was completing a step.
+I divided my whole project in small chunks as:
+first I created User authentication
+then, I created Group Chat feature 
+and lastly Group Video Chat Model.
