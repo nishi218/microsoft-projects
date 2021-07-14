@@ -6,6 +6,7 @@ I used Django as backend because it follows DRY principle. It uses python as pro
 Websockets are used which allows more than 2 peers to connect which is quite difficult in socket.io.
 This app has user authentication system.
 
+
 video link:- https://www.youtube.com/watch?v=dI4tBNL4YcA
 
 WEBPAGES IN THIS APP
@@ -21,6 +22,9 @@ Calls page to make a call to a particular user or group
 Index page which aska for a room name to which user wants to enter
 
 Group video chat room
+
+URL of first page of this app for local host is http://127.0.0.0:8000/login/
+
 
 WALKTHROUGH MY APP
 
